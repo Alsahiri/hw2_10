@@ -1,7 +1,5 @@
 package com.example.hw2_10.controller;
 
-import com.example.hw2_10.service.Product;
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,12 +16,11 @@ public class StoreController {
         this.storeService = storeService;
     }
     @GetMapping("/add")
-    public String addProduct(@RequestParam String id) {
-        storeService.addArticle(id);
-        return "Товар добавлен в корзину";
+    public List<Integer> addProduct(@RequestParam List<Integer> article) {
+        return storeService.addArticle(article);
     }
     @GetMapping("/get")
-    public List<Product> print() {
-        return storeService.showBasket();
+    public List<Integer> print() {
+        return storeService.getBasket();
     }
 }
